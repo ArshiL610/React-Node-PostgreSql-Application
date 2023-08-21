@@ -35,7 +35,7 @@ pool.connect((err, client, release) => {
 })
   
 //get all users
-app.get('/get/users', (req, res, next) => {
+app.get('/get/users/all', (req, res, next) => {
     console.log("TEST DATA :");
     pool.query('Select * from users')
         .then(testData => {
@@ -64,7 +64,7 @@ app.get('/get/users/byId',(req,res,next) => {
     })
 })
 
-//get user data by name or username
+//get user data by name or username (for filter feature)
 app.get('/get/users/byName',(req,res,next) => {
     const Username = req.query.username;
     console.log("Fetching user data for name:", Username);
@@ -84,6 +84,26 @@ app.get('/get/users/byName',(req,res,next) => {
         res.status(500).send("Internal Server Error");
     })
 });
+
+//get user data by dept name (for filter feature)
+app.get('/get/users/byDept',(req,res) => {
+    const Dept = req.query.dept;
+    console.log("Fetching user data for the dept : ", Dept);
+    pool.query('Select * from users where dept = $1', [Dept])
+    .then(userData => {
+        if(userData.rows.length === 0){
+            res.status(404).send("user not found");
+        }
+        else{
+            res.send(userData.rows);
+            console.log('Successfully fetched user data')
+        }
+    })
+    .catch(error => {
+        console.log("Error fetching the client data : ", error);
+        res.status(500).send("Internal server error");
+    })
+})
 
 app.listen(port, () => {
   console.log(`React-Node App is running on port ${port}.`);
