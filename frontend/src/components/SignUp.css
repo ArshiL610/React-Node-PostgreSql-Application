@@ -1,0 +1,8 @@
+.bg-signup{
+    background-color: black;
+    height: 100vh;
+    background-image: url('background_node_project.jpg');
+    background-size:contain;
+    background-position:right ; 
+    background-repeat: no-repeat;
+}
