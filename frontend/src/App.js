@@ -1,15 +1,15 @@
 import './App.css';
 import HomePage from './components/HomePage';
 import SignUp from './components/SignUp';
-// import RenderTable from './components/RenderTable';
 import {Routes, Route} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <div>
+      <ToastContainer />
       <Routes>
-        {/* <HomePage /> */}
-        <Route path='/homepage' element={<HomePage />} />
+        <Route path='/' element={<HomePage />} />
         <Route path='/signup' element={<SignUp />} />
       </Routes>
     </div>

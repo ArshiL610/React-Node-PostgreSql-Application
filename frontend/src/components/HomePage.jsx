@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
 import Navbar from './Navbar'
 import './HomePage.css';
-import { Button, Link, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 function HomePage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
 
   return (
     <div className='bg'>
@@ -19,13 +21,13 @@ function HomePage() {
             color='info'
             type="email"
             sx={{ml:'58%', mt: '100px',width: 400, color:'white',
-            borderColor: 'white', // Set the background color to white
+            borderColor: 'white', 
             '& .MuiOutlinedInput-root': {
                 '& fieldset': {
-                    borderColor: 'white', // Set the border color to white
+                    borderColor: 'white', 
                 },
                 '&:hover fieldset': {
-                    borderColor: 'white', // Set the hover border color to white
+                    borderColor: 'white',
                 },},
             }}
             inputProps={{
@@ -42,13 +44,13 @@ function HomePage() {
             type='password'
             value={password}
             sx={{ml:'58%', mt: '20px',width: 400, color:'white',
-            borderColor: 'white', // Set the background color to white
+            borderColor: 'white', 
             '& .MuiOutlinedInput-root': {
                 '& fieldset': {
-                    borderColor: 'white', // Set the border color to white
+                    borderColor: 'white', 
                 },
                 '&:hover fieldset': {
-                    borderColor: 'white', // Set the hover border color to white
+                    borderColor: 'white', 
                 },},
             }}
             inputProps={{
@@ -69,7 +71,6 @@ function HomePage() {
         <small style={{marginLeft:'66.5%', color:'white', position:'absolute'}}>Don't have an account? <Link to='/signup' style={{ cursor: 'pointer' }}>
             Sign Up</Link>
         </small>
-        
     </div>
   )
 }

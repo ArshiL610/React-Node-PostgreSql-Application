@@ -1,9 +1,10 @@
 import React,{useState} from 'react'
 import './SignUp.css';
 import Navbar from './Navbar';
-import { Box, Button, IconButton, TextField, Typography } from '@mui/material';
+import { Box, Button, IconButton, TextField, Typography, CircularProgress } from '@mui/material';
 import ForwardRoundedIcon from '@mui/icons-material/ForwardRounded';
 import {useNavigate} from 'react-router-dom';
+import { toast} from 'react-toastify';
 
 function SignUp() {
 
@@ -12,15 +13,58 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [password ,setPassword] = useState('');
     const [password1, setPassword1] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleBackwardNavigation = () => {
         navigate(-1);
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+    
+        setLoading(true);
+        // Create an object with user data
+        const userData = {
+            name,
+            email,
+            password,
+        };
+    
+        try {
+            // Send a POST request to the backend
+            setLoading(false);
+            const response = await fetch('http://localhost:5000/post/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+            });
+    
+            if (response.ok) {
+                // Registration successful, you can redirect the user or show a success message
+                toast.success('Registration Successful');
+                setName('');
+                setEmail('');
+                setPassword('');
+                setPassword1('');
+                navigate('/'); // Redirect to the login page
+
+            } else {
+                // Registration failed, handle errors here
+                // You can display an error message to the user
+                console.error('Registration failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+    
+
   return (
     <div className='bg-signup'>
         <Navbar/>
-        <form autoComplete='off'  >
+        <form autoComplete='off' >
         <Box
             sx={{
             display: 'flex',
@@ -124,7 +168,9 @@ function SignUp() {
                     }}
         />
         <small style={{color:'white'}}>Re-enter Password*</small>
-        <Button size='medium' variant='outlined' color='info' sx={{width:'100px', ml:18, mt:3}}>Sign Up</Button>
+        <Button size='medium' variant='outlined' color='info' sx={{width:'100px', ml:18, mt:3}} onClick={handleSubmit}>
+            {loading ? <CircularProgress color='inherit' size={24} /> : 'Sign Up'}
+        </Button>
         </Box>
         </form>
     </div>

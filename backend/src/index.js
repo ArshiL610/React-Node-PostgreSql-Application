@@ -4,7 +4,7 @@ const express = require('express');
 const cors = require("cors");
 
 const app = express();
-
+app.use(express.json());
 app.use(cors());
 const port = 5000;
 const Pool = require('pg').Pool;
@@ -43,6 +43,26 @@ app.get('/get/users/all', (req, res, next) => {
             res.send(testData.rows);
         })
 })
+
+//post req
+app.post('/post/user', (req, res) => {
+    const { email, name, password } = req.body;
+
+    // Check if the required fields are present in the request body
+    // if (!email || !name || !password) {
+    //     return res.status(400).json({ message: 'All fields are required' });
+    // }
+
+    // Insert the new user into the "users" table
+    pool.query('INSERT INTO users (email, name, password) VALUES ($1, $2, $3)', [email, name, password])
+        .then(newUser => {
+            res.status(201).json(newUser.rows[0]);
+        })
+        .catch(error => {
+            console.error('Error adding user:', error);
+            res.status(500).json({ message: 'Internal Server Error' });
+        });
+});
 
 //get by id
 app.get('/get/users/byId',(req,res,next) => {
@@ -86,24 +106,24 @@ app.get('/get/users/byName',(req,res,next) => {
 });
 
 //get user data by dept name (for filter feature)
-app.get('/get/users/byDept',(req,res) => {
-    const Dept = req.query.dept;
-    console.log("Fetching user data for the dept : ", Dept);
-    pool.query('Select * from users where dept = $1', [Dept])
-    .then(userData => {
-        if(userData.rows.length === 0){
-            res.status(404).send("user not found");
-        }
-        else{
-            res.send(userData.rows);
-            console.log('Successfully fetched user data')
-        }
-    })
-    .catch(error => {
-        console.log("Error fetching the client data : ", error);
-        res.status(500).send("Internal server error");
-    })
-})
+// app.get('/get/users/byDept',(req,res) => {
+//     const Dept = req.query.dept;
+//     console.log("Fetching user data for the dept : ", Dept);
+//     pool.query('Select * from users where dept = $1', [Dept])
+//     .then(userData => {
+//         if(userData.rows.length === 0){
+//             res.status(404).send("user not found");
+//         }
+//         else{
+//             res.send(userData.rows);
+//             console.log('Successfully fetched user data')
+//         }
+//     })
+//     .catch(error => {
+//         console.log("Error fetching the client data : ", error);
+//         res.status(500).send("Internal server error");
+//     })
+// })
 
 app.listen(port, () => {
   console.log(`React-Node App is running on port ${port}.`);
