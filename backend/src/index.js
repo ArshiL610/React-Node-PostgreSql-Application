@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 app.use(cors());
+
 const port = 5000;
 const Pool = require('pg').Pool;
   //Enter here your Postres database details
@@ -124,6 +125,29 @@ app.get('/get/users/byName',(req,res,next) => {
 //         res.status(500).send("Internal server error");
 //     })
 // })
+
+//login request
+// In your Node.js backend (app.js or a dedicated route file)
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+  
+    // Check if the email and password match a user in the database
+    pool.query('SELECT * FROM users WHERE email = $1 AND password = $2', [email, password])
+      .then(result => {
+        if (result.rows.length === 0) {
+          // No user found with the provided email and password
+          res.status(401).json({ message: 'Authentication failed' });
+        } else {
+          // User authenticated successfully
+          res.status(200).json({ message: 'Authentication successful', user: result.rows[0] });
+        }
+      })
+      .catch(error => {
+        console.error('Error during login:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+      });
+  });
+  
 
 app.listen(port, () => {
   console.log(`React-Node App is running on port ${port}.`);
