@@ -14,7 +14,7 @@ const pool = new Pool({
     user: 'postgres',
     host: 'localhost',
     database: 'node_react_project',
-    password: 'postgres',
+    password: 'Arshil@2001',
     dialect: 'postgres',
     port: 5432
 });
