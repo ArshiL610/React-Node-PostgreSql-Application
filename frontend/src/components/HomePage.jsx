@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 
+
 function HomePage() {
 
     const [email, setEmail] = useState('');
@@ -13,34 +14,33 @@ function HomePage() {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
 
-    const handleLogin = async () => {
-        try {
-          setLoading(true);
-          const response = await axios.post(`http://localhost:5000/login`, { email, password });
-          console.log(response.data);
-          setEmail('');
-          setPassword('');
-          setTimeout(() => {
-            setLoading(false);
-            navigate('/tasks')
-            toast.success('Login Successful')
-          }, 4000)
-        } 
-        catch (error) {
-          // Handle login failure, e.g., display an error message.
-          setLoading(false);
-          console.error('Login failed:', error);
-          toast.error('Login Failed');
-          setEmail('');
-          setPassword('');
-        }
-      };
 
+    const handleLogin = async () => {
+        setLoading(true);
+        await axios.post(`http://localhost:5000/users/login`,{email, password})
+        .then(response => {
+            setEmail('');
+            setPassword('');
+            setTimeout(() => {
+                setLoading(false);
+                toast.success('Login Successful!');
+                navigate(`/tasks/${response.data.user.name}`);
+            }, 4000)
+        })
+        .catch(error => {
+            setLoading(false);
+            setEmail('');
+            setPassword('');
+            toast.error('Login Failed')
+        })
+    }
 
   return (
-    <div className='bg'>
+    <div className='container'>
+        <div className='background-image'></div>
+        <div className='content'>
         <Navbar />
-        <form autoComplete='off' onSubmit={handleLogin}>
+        <form autoComplete='off'>
         <TextField 
             onChange={e => setEmail(e.target.value)}
             required
@@ -88,20 +88,21 @@ function HomePage() {
             
         /><br/>
         <small style={{color:'white', marginLeft:'58%'}}>Enter Password*</small>
-        <Button size='large' variant='outlined' color='inherit' type='submit' sx={{fontSize:'22px', ml:'69%', mt:'50px', backgroundColor:'white',color: 'black',
-            '&:hover': {
-                backgroundColor: 'transparent', 
-                color: 'white', 
-            },}}  
-            // disabled={loading || !email || !password}
+        <Button size='large' variant='contained' color='inherit' type='button' onClick={handleLogin} sx={{fontSize:'20px', ml:'70%', mt:'50px', backgroundColor:'white',}}  
+            disabled={loading }
             >
-            {loading ? <CircularProgress color='inherit' size={24} /> : 'Login'}
+            {loading ? <CircularProgress color='inherit' sx={{color:'white'}} size={32} /> : 'Login'}
         </Button>
         </form>
         <br/><br/>
-        <small style={{marginLeft:'66.5%', color:'white', position:'absolute'}}>Don't have an account? <Link to='/signup' style={{ cursor: 'pointer' }}>
+        <small style={{marginLeft:'66.5%', color:'white', position:'absolute'}}>Don't have an account? <Link to='/signup' style={{ cursor: 'pointer', color:'orange' }}>
             Sign Up</Link>
         </small>
+        <br/>
+        <small style={{marginLeft:'66.5%', color:'white', position:'absolute'}}>Forgot password? <Link to='/forgot-password' style={{ cursor: 'pointer', color:'orange' }}>
+            Reset</Link>
+        </small>
+        </div>
     </div>
   )
 }

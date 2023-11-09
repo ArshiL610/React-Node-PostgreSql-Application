@@ -43,16 +43,22 @@ function SignUp() {
     
             if (response.ok) {
                 // Registration successful, you can redirect the user or show a success message
-                toast.success('Registration Successful');
-                setName('');
-                setEmail('');
-                setPassword('');
-                setPassword1('');
-                navigate('/'); // Redirect to the login page
+                // toast.success('Registration Successful');
+                // setName('');
+                // setEmail('');
+                // setPassword('');
+                // setPassword1('');
+                // navigate('/'); // Redirect to the login page
 
+                setTimeout(() => {
+                    toast.success('Registration Successful');
+                    setName('');
+                    setEmail('');
+                    setPassword('');
+                    setPassword1('');
+                    navigate('/'); // Redirect to the login page
+                }, 2000); 
             } else {
-                // Registration failed, handle errors here
-                // You can display an error message to the user
                 console.error('Registration failed');
             }
         } catch (error) {
@@ -72,8 +78,8 @@ function SignUp() {
             alignItems: 'left',
             maxWidth: '400px',
             margin: '0 auto',
-            ml:18,
-            mt:-4
+            ml:16,
+            mt:-1
             }}
         >
         <IconButton variant='contained' size='large' sx={{color:'white', mt:3, ml:-72}} onClick={handleBackwardNavigation}>
@@ -169,7 +175,7 @@ function SignUp() {
         />
         <small style={{color:'white'}}>Re-enter Password*</small>
         <Button size='medium' variant='outlined' color='info' sx={{width:'100px', ml:18, mt:3}} onClick={handleSubmit}>
-            {loading ? <CircularProgress color='inherit' size={24} /> : 'Sign Up'}
+            {loading ? <CircularProgress color='inherit' sx={{color:'white'}} size={26} /> : 'Sign Up'}
         </Button>
         </Box>
         </form>
