@@ -1,13 +1,13 @@
 const express = require('express');
-// encrypting password
+// encrypting password imports
 const bcrypt = require('bcrypt');
 const { hashPassword, verifyPassword } = require('./passwordUtils');
 
-// nodemailer package for email sending feature
+// nodemailer package import for email sending feature
 const nodemailer = require('nodemailer');
 // const randomstring = require('randomstring');
 
-//solve cors issue
+//solve cors issue import
 const cors = require("cors");
 
 const app = express();
@@ -370,30 +370,73 @@ app.post('/verify-otp', (req, res) => {
 app.put('/reset-password', async (req, res) => {
   const { email, password } = req.body;
 
+  //transporter with email service
+  const transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'focusflow244@gmail.com',
+      pass: 'injhzqgiyoqecpzu',
+    },
+  });
+
   try {
+    const mailOptions = {
+      from: 'focusflow244@gmail.com',
+      to: email,
+      subject: 'Password Update Notification - Focus Flow',
+      text: `Dear User,
+    
+This is a notification from Focus Flow regarding your account.
+    
+We want to inform you that your password has been successfully updated. If you initiated this change, you can disregard this message. However, if you did not make this change, please contact our support team immediately.
+    
+Remember to keep your password secure and do not share it with anyone. If you have any concerns or questions, feel free to reach out to our support team.
+    
+Thank you for using Focus Flow for your note-taking needs.
+    
+Best regards,
+The Focus Flow Team`,
+    };
+    
     // hashing the new password before storing it in the database
     const hashedNewPassword = await hashPassword(password);
 
     // Updating the user's password in the database-table 'users'
     pool.query('UPDATE users SET password = $1 WHERE email = $2', [hashedNewPassword, email])
       .then(updatedUser => {
-        if (updatedUser.rowCount === 0) {
-          res.status(404).json({ message: 'User not found' });
-        } else {
-          res.status(200).json({ message: 'Password reset successful' });
-        }
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (updatedUser.rowCount === 0) {
+            res.status(404).json({ message: 'User not found' });
+          } else {
+            res.status(200).json({ message: 'Password reset successful' });
+            res.status(200).json({ message: 'Update email sent successfully'});
+          }
+        })
       })
       .catch(error => {
         console.error('Error resetting password:', error);
         res.status(500).json({ message: 'Internal Server Error' });
       });
-  } catch (error) {
+  } 
+  catch (error) {
     console.error('Error hashing the new password:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
-
+//data insertion in the 'reviews' table for the ratings feature
+app.post('/addReview/reviews',(req,res) => {
+  const {rating, name, email, feedback} = req.body;
+  //insert query
+  pool.query(`INSERT INTO reviews (rating, name, email, feedback) VALUES ($1, $2, $3, $4)`, [rating, name, email, feedback])
+  .then(newReview => {
+    res.status(201).json(newReview.rows[0]);
+  })
+  .catch(error => {
+    console.error('Error adding review: ',error);
+    res.status(500).json({message: 'Internal Server Error'});
+  })
+}); 
 
 
 app.listen(port, () => {

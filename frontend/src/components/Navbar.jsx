@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import { Avatar } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {useLocation, useNavigate} from 'react-router-dom'
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
@@ -21,6 +21,14 @@ function Navbar({name}) {
   const location = useLocation();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  // eslint-disable-next-line no-unused-vars
+  const [shouldReplace, setShouldReplace] = useState(false);
+
+
+  // useEffect to reset shouldReplace when location changes
+  useEffect(() => {
+    setShouldReplace(false);
+  }, [location.pathname]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -30,7 +38,8 @@ function Navbar({name}) {
   };
   const handleLogOut = () => {
     setAnchorEl(null);
-    navigate("/");
+    setShouldReplace(true);
+    navigate("/", { replace: true });
   }
 
   const excludeLogOutRoutes = [ 

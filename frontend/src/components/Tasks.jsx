@@ -66,7 +66,8 @@ const Tasks = () => {
         // const incompleteTasks = tasks_fetch.data.filter((task) => !task.status);
 
         // Update state with the tasks and completed tasks
-        setTasks(tasks_fetch.data);
+        // setTasks(tasks_fetch.data);
+        setTasks(tasks_fetch.data.map(task => ({ ...task, status: task.status === true })));
         setCompletedTasks(completedTasks);
         
       }
@@ -173,30 +174,51 @@ const Tasks = () => {
     }
   };
   
-//logical issue to be solveddddd
-  const toggleTaskStatus = async (taskId, userName, taskName) => {
-    // Check if the task is completed
-    const isCompleted = completedTasks.includes(taskId);
-    // console.log('Before clicking:', completedTasks);
-    // console.log('Task ID:', taskId);
-    // console.log('Is Completed:', isCompleted);
-    // Define the new status
-    const newStatus = !isCompleted;
-    console.log('New Status:', newStatus);
+  // const toggleTaskStatus = async (taskId, userName, taskName) => {
+  //   // Check if the task is completed
+  //   const isCompleted = completedTasks.includes(taskId);
+  //   // console.log('Before clicking:', completedTasks);
+  //   // console.log('Task ID:', taskId);
+  //   // console.log('Is Completed:', isCompleted);
+  //   // Define the new status
+  //   const newStatus = !isCompleted;
+  //   console.log('New Status:', newStatus);
     
-    await axios.put(`http://localhost:5000/update/task/status`, { name: userName, task: taskName, status: newStatus })
-    if (isCompleted) {
-      // Task is completed, mark it as incomplete
-      // const updatedTasks = completedTasks.filter((id) => id !== taskId);
-      const updatedCompletedTasks = isCompleted ? completedTasks.filter(id => id !== taskId) : [...completedTasks, taskId];
-      setCompletedTasks(updatedCompletedTasks);
-    } else {
-      // Task is incomplete, mark it as completed
-      setCompletedTasks([...completedTasks, taskId]);
-    }
+  //   await axios.put(`http://localhost:5000/update/task/status`, { name: userName, task: taskName, status: newStatus })
+  //   if (isCompleted) {
+  //     // Task is completed, mark it as incomplete
+  //     // const updatedTasks = completedTasks.filter((id) => id !== taskId);
+  //     const updatedCompletedTasks = isCompleted ? completedTasks.filter(id => id !== taskId) : [...completedTasks, taskId];
+  //     setCompletedTasks(updatedCompletedTasks);
+  //   } else {
+  //     // Task is incomplete, mark it as completed
+  //     setCompletedTasks([...completedTasks, taskId]);
+  //   }
 
-    // console.log('After clicking:', completedTasks);
+  //   // console.log('After clicking:', completedTasks);
+  // };
+
+  const toggleTaskStatus = async (taskId, userName, taskName) => {
+    try {
+      const isCompleted = completedTasks.includes(taskId);
+      const newStatus = !isCompleted;
+  
+      await axios.put(`http://localhost:5000/update/task/status`, { name: userName, task: taskName, status: newStatus });
+  
+      // Update the tasks state based on the new status
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === taskId ? { ...task, status: newStatus } : task))
+      );
+  
+      // Update the completedTasks state based on the new status
+      setCompletedTasks((prevCompletedTasks) =>
+        newStatus ? [...prevCompletedTasks, taskId] : prevCompletedTasks.filter((id) => id !== taskId)
+      );
+    } catch (error) {
+      console.error('Error toggling task status:', error);
+    }
   };
+
   
   //for delete task feature
   const handleDeleteTask = async () => {
@@ -334,13 +356,19 @@ const Tasks = () => {
                 <ListItemIcon sx={{ml:0.5}}>
                   <CheckCircleOutlineIcon sx={{fontSize:'30px', color:'gray'}} />
                 </ListItemIcon>
-                <ListItemText primary="Click this to mark the task as incomplete" />
+                <ListItemText primary="Click this to mark the task as incomplete" 
+                  secondary={
+                    <Typography variant="body2" color="textSecondary">
+                      (After logging-in or refreshing, if you wish to mark the task as incomplete, <b>DOUBLE CLICK</b> this icon to mark the task as incomplete)
+                    </Typography>
+                  }
+                />
               </ListItem>
             </List>
             </DialogContent>
           </Dialog>
 
-          <Container maxWidth="lg" sx={{overflowY:'auto', height:440, mt:0, ml:2}}>
+          <Container maxWidth="lg" sx={{overflowY:'auto', height:453, mt:0, ml:2}}>
             <Grid container spacing={2} sx={{mt:0}}>
               {tasks.map((task) => (
                 <Grid item xs={6} sm={6} key={task.id}>
@@ -370,7 +398,7 @@ const Tasks = () => {
                       >
                         <IconButton onClick={() => toggleTaskStatus(task.id, task.name, task.task)}
                           sx={{
-                            color: completedTasks.includes(task.id) || task.status ? 'white' : 'lightgreen',
+                            color: task.status ? 'white' : 'lightgreen',
                           }}
                         >
                           <CheckCircleOutlineIcon fontSize='medium' />
