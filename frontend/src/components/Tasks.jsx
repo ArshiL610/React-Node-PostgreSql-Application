@@ -46,7 +46,7 @@ const Tasks = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/get/users/byName?name=${name}`);
+        const response = await axios.get(`https://focusflowbackend.netlify.app/get/users/byName?name=${name}`);
         const userEmail = response.data.email;
         setLoggedInEmail(userEmail);
       }
@@ -57,7 +57,7 @@ const Tasks = () => {
 
     const fetchTaskData = async () => {
       try{
-        const tasks_fetch = await axios.get(`http://localhost:5000/get/tasks/byName?name=${name}`);
+        const tasks_fetch = await axios.get(`https://focusflowbackend.netlify.app/get/tasks/byName?name=${name}`);
         // console.log('Fetched tasks:', tasks_fetch.data);
         
         // Separate tasks into completed and incomplete
@@ -121,11 +121,11 @@ const Tasks = () => {
         name: name,   
         task: newTask
       };
-      const response = await axios.post('http://localhost:5000/add/task', taskData);
+      const response = await axios.post('https://focusflowbackend.netlify.app/add/task', taskData);
       if (response.status === 201) {
         setNewTask('');
         toast.success('Task Added');
-        const tasksResponse = await axios.get(`http://localhost:5000/get/tasks/byName?name=${name}`);
+        const tasksResponse = await axios.get(`https://focusflowbackend.netlify.app/get/tasks/byName?name=${name}`);
         setTasks(tasksResponse.data);
       } 
       else {
@@ -153,7 +153,7 @@ const Tasks = () => {
         newTask: editTask,
       };
   
-      const response = await axios.put('http://localhost:5000/update/task', taskData);
+      const response = await axios.put('https://focusflowbackend.netlify.app/update/task', taskData);
   
       if (response.status === 200) {
         toast.success('Task Updated');
@@ -203,7 +203,7 @@ const Tasks = () => {
       const isCompleted = completedTasks.includes(taskId);
       const newStatus = !isCompleted;
   
-      await axios.put(`http://localhost:5000/update/task/status`, { name: userName, task: taskName, status: newStatus });
+      await axios.put(`https://focusflowbackend.netlify.app/update/task/status`, { name: userName, task: taskName, status: newStatus });
   
       // Update the tasks state based on the new status
       setTasks((prevTasks) =>
@@ -228,7 +228,7 @@ const Tasks = () => {
           task : taskToDelete.task
         }
 
-        const response = await axios.delete('http://localhost:5000/delete/task', { data: taskData });
+        const response = await axios.delete('https://focusflowbackend.netlify.app/delete/task', { data: taskData });
         if(response.status === 204){
           toast.success('Task deleted');
           setTaskToDelete(null);
