@@ -32,7 +32,7 @@ function ResetPassword() {
             };
 
             setLoading(true);
-            await axios.put(`http://localhost:5000/reset-password`, request)
+            await axios.put(`https://focusflowbackend.netlify.app/reset-password`, request)
             .then(response => {
                 setTimeout(() => {
                     setLoading(false);
