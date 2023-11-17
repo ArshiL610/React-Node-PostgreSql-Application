@@ -20,7 +20,7 @@ function HomePage() {
 
     const handleLogin = async () => {
         setLoading(true);
-        await axios.post(`http://localhost:5000/users/login`,{email, password})
+        await axios.post(`https://focusflowbackend.netlify.app/users/login`,{email, password})
         .then(response => {
             setEmail('');
             setPassword('');
