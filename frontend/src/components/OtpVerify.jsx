@@ -22,7 +22,7 @@ function OtpVerify() {
     setLoading(true);
 
     try {
-      const response = await axios.post('https://focusflowbackend.netlify.app/verify-otp', {
+      const response = await axios.post('http://localhost:5000/verify-otp', {
         email: email,
         otp: otp,
       });

@@ -33,7 +33,7 @@ function SignUp() {
         try {
             // Send a POST request to the backend
             setLoading(false);
-            const response = await fetch('https://focusflowbackend.netlify.app/post/user', {
+            const response = await fetch('http://localhost:5000/post/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

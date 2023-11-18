@@ -21,7 +21,7 @@ function ForgotPasswordEmailInput() {
         
         setLoading(true);
 
-        await axios.post(`https://focusflowbackend.netlify.app/send-otp`, {email})
+        await axios.post(`http://localhost:5000/send-otp`, {email})
         .then(response => {
             setTimeout(() => {
                 setLoading(false);

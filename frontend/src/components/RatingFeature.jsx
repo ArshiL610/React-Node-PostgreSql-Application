@@ -35,7 +35,7 @@ const RatingFeature = () => {
         feedback : feedback,
       }
 
-      const response = await axios.post(`https://focusflowbackend.netlify.app/addReview/reviews`, reviewData);
+      const response = await axios.post(`http://localhost:5000/addReview/reviews`, reviewData);
       if(response.status === 201){
         setUserRating(0);
         setName('');
