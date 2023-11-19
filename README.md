@@ -58,7 +58,7 @@ Follow the steps below to get the Focus Flow application up and running:
 3. Create the tables based on the understanding upon viewing the 
 
 ## Screenshots
-![home]()
+![home](https://github.com/ArshiL610/React-Node-PostgreSql-Application/assets/91752244/bfa470fc-d54f-424b-8689-33de5be5391a)
 *Home Page/ Login Page*
 
 ![signup]()
