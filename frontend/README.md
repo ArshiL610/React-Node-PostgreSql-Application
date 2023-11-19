@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Focus Flow - a note taking application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Focus Flow is a robust fullstack note-taking application meticulously crafted to empower users in organizing and managing their notes efficiently. We prioritize the security and convenience of our users, ensuring a seamless and protected note-taking experience.
 
-## Available Scripts
+## Technologies Used
 
-In the project directory, you can run:
+- Frontend: React.js, Material-UI
+- Backend: Node.js (Express.js)
+- Database: PostgreSQL
+- Api Testing: Postman
 
-### `npm start`
+## Key Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Secure Data Storage**: Focus Flow employs standard encryption techniques to safeguard user data, ensuring that all notes and personal information are stored securely.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Password Encryption**: User passwords are securely encrypted using industry-standard hashing algorithms, providing an extra layer of protection for user accounts.
 
-### `npm test`
+- **One-Time Password (OTP) Mechanism**: For added security, Focus Flow implements OTP mechanisms for password reset. Users can reset their passwords securely through a one-time code sent to their registered email address.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Email Notifications**: Stay informed with automatic email notifications for essential account activities, such as successful password changes and user sign-ups.
 
-### `npm run build`
+- **User-Friendly Interface**: Focus Flow is designed with a clean and intuitive user interface, providing a seamless experience for users of all technical backgrounds.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Effortless Note Management**: Create, edit, and delete notes with ease. The application's intuitive design allows users to focus on their thoughts without unnecessary complexities.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Before running the Focus Flow App, ensure you have the following prerequisites installed:
 
-### `npm run eject`
+- Node.js: Make sure you have Node.js and npm (Node Package Manager) installed.
+- React.js : Make sure you install npm with the relevant version.
+- PostgreSQL: Set up a PostgreSQL database and configure the connection details.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Getting Started
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Follow the steps below to get the Focus Flow application up and running:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Navigate to the `[React-Node-PostgreSql-Application]`(https://github.com/ArshiL610/React-Node-PostgreSql-Application.git) directory: `cd frontend`.
+2. Install the dependencies: `npm install`.
+3. Configure the backend API endpoints in the files/components. (Example: APP_API_URL=http://localhost:5000/api`)
+4. Start the development server: `npm start`.
+5. Access the app in your browser at `http://localhost:3000`.
 
-## Learn More
+### Backend
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Navigate to the `[React-Node-PostgreSql-Application-Backend]`(https://github.com/ArshiL610/React-Node-PostgreSql-Application-Backend.git) directory: `cd backend`.
+2. Configure the database connection details in `index.js` file.
+3. Install the dependencies(including nodemon for development server, during production build remove the nodemon dev dependency): `npm install`.
+4. Start the backend server: `npm run serve`.
+5. The backend server will start at `http://localhost:5000`, with the port number specified as `5000`, you can change it according to your requirements.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Database Setup
 
-### Code Splitting
+1. Create a new PostgreSQL database for the `Focus Flow` application.
+2. Update the database connection details in the backend's `index.js` file.
+3. Create the tables based on the understanding upon viewing the 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Screenshots
+![home]()
+*Home Page/ Login Page*
 
-### Analyzing the Bundle Size
+![signup]()
+*Sign Up Page*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![signupemail]()
+*Welcome Email*
 
-### Making a Progressive Web App
+![reset]()
+*Email input for password reset*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![resetemail]()
+*Reset Password OTP*
 
-### Advanced Configuration
+![passwordreset]()
+*Password Reset Page*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![login]()
+*Login Page with credentials*
 
-### Deployment
+![tasks]()
+*Tasks Page*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under [Arshil Akkala](LICENSE). You are free to use, modify, and distribute the code as per the terms of the license.
+
+## Contact
+
+If you have any questions or suggestions regarding the Focus Flow application, please feel free to reach out to us at [focusflow244@gmail.com](mailto:focusflow244@gmail.com) or [arshilakkala@gmail.com](mailto:arshilakkala@gmail.com).
+
+
+Thank you for choosing Focus Flow as your note-taking companion.
