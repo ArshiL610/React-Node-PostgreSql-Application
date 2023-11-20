@@ -1,6 +1,6 @@
 # Focus Flow - a note taking application
 
-Focus Flow is a robust fullstack note-taking application meticulously crafted to empower users in organizing and managing their notes efficiently. We prioritize the security and convenience of our users, ensuring a seamless and protected note-taking experience.
+Focus Flow is a robust fullstack note-taking application meticulously crafted to empower users in organizing and managing their notes/tasks efficiently. We prioritize the security and convenience of our users, ensuring a seamless and protected note-taking experience.
 
 ## Technologies Used
 
