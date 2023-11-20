@@ -62,6 +62,7 @@ Follow the steps below to get the Focus Flow application up and running:
 ### Backend
 
 1. Navigate to the `[React-Node-PostgreSql-Application-Backend]`(https://github.com/ArshiL610/React-Node-PostgreSql-Application-Backend.git) directory:
+
    ```powershell
    cd backend
 
