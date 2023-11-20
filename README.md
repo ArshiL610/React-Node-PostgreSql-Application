@@ -50,13 +50,11 @@ Follow the steps below to get the Focus Flow application up and running:
 2. Install the dependencies:
    ```powershell
    npm install
-   ```
 
 3. Configure the backend API endpoints in the files/components. (Example: APP_API_URL=http://localhost:5000/api`)
 4. Start the development server:
    ```powershell
    npm start
-   ```
 
 5. Access the app in your browser at `http://localhost:3000`.
 
@@ -65,18 +63,15 @@ Follow the steps below to get the Focus Flow application up and running:
 1. Navigate to the `[React-Node-PostgreSql-Application-Backend]`(https://github.com/ArshiL610/React-Node-PostgreSql-Application-Backend.git) directory:
    ```powershell
    cd backend
-   ```
 
 2. Configure the database connection details in `index.js` file.
 3. Install the dependencies(including nodemon for development server, during production build remove the nodemon dev dependency):
    ```powershell
    npm install
-   ```
 
 4. Start the backend server:
    ```powershell
    npm run serve
-   ```
 
 5. The backend server will start at `http://localhost:5000`, with the port number specified as `5000`, you can change it according to your requirements.
 
