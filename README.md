@@ -47,13 +47,13 @@ Follow the steps below to get the Focus Flow application up and running:
     cd frontend
    ```
 2. Install the dependencies:
-  ```bash
-  npm install
-  ```
+   ```bash
+      npm install
+   ```
 3. Configure the backend API endpoints in the files/components. (Example: APP_API_URL=http://localhost:5000/api`)
 4. Start the development server:
-  ```bash
-  npm start
+   ```bash
+     npm start
   ```
 5. Access the app in your browser at `http://localhost:3000`.
 
