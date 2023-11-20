@@ -7,7 +7,7 @@ Focus Flow is a robust fullstack note-taking application meticulously crafted to
 - Frontend: React.js, Material-UI
 - Backend: Node.js (Express.js)
 - Database: PostgreSQL
-- Api Testing: Postman
+- API Testing: Postman
 
 ## Repositories
 
