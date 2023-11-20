@@ -62,11 +62,14 @@ npm start
 
 ### Backend
 
-1. Navigate to the `[React-Node-PostgreSql-Application-Backend]`(https://github.com/ArshiL610/React-Node-PostgreSql-Application-Backend.git) directory: `cd backend`.
-2. Configure the database connection details in `index.js` file.
-3. Install the dependencies(including nodemon for development server, during production build remove the nodemon dev dependency): `npm install`.
-4. Start the backend server: `npm run serve`.
-5. The backend server will start at `http://localhost:5000`, with the port number specified as `5000`, you can change it according to your requirements.
+1. Navigate to the `[React-Node-PostgreSql-Application-Backend]`(https://github.com/ArshiL610/React-Node-PostgreSql-Application-Backend.git) directory:
+```bash
+cd backend
+```
+3. Configure the database connection details in `index.js` file.
+4. Install the dependencies(including nodemon for development server, during production build remove the nodemon dev dependency): `npm install`.
+5. Start the backend server: `npm run serve`.
+6. The backend server will start at `http://localhost:5000`, with the port number specified as `5000`, you can change it according to your requirements.
 
 ## Database Setup
 
