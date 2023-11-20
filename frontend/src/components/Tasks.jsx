@@ -72,7 +72,7 @@ const Tasks = () => {
         
       }
       catch(error){
-        toast.error('Error fetching tasks data')
+        console.error('Error fetching tasks data')
       }
     }
 
