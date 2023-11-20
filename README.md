@@ -95,7 +95,7 @@ Follow the steps below to get the Focus Flow application up and running:
 
 
 ![image](https://github.com/ArshiL610/React-Node-PostgreSql-Application/assets/91752244/f5fa1e3d-cd18-4d8a-8233-ac9dc3554f37)
-*Notes Page after login*
+*Tasks Page after login*
 
 
 ![image](https://github.com/ArshiL610/React-Node-PostgreSql-Application/assets/91752244/4f41aeab-a43d-42b4-9ab1-aad3cbdfa2b9)
