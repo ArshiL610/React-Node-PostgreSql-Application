@@ -43,12 +43,11 @@ Follow the steps below to get the Focus Flow application up and running:
 ### Frontend
 
 1. Clone the repository:
-   
    ```powershell
    git clone https://github.com/ArshiL610/React-Node-PostgreSql-Application.git
    cd frontend
 
-3. Install the dependencies:
+2. Install the dependencies:
    ```powershell
    npm install
 
