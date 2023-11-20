@@ -9,6 +9,11 @@ Focus Flow is a robust fullstack note-taking application meticulously crafted to
 - Database: PostgreSQL
 - Api Testing: Postman
 
+## Repositories
+
+-Frontend Repo: https://github.com/ArshiL610/React-Node-PostgreSql-Application.git
+-Backend Repo: https://github.com/ArshiL610/React-Node-PostgreSql-Application-Backend.git
+
 ## Key Features
 
 - **Secure Data Storage**: Focus Flow employs standard encryption techniques to safeguard user data, ensuring that all notes and personal information are stored securely.
