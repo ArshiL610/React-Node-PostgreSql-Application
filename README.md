@@ -43,17 +43,20 @@ Follow the steps below to get the Focus Flow application up and running:
 ### Frontend
 
 1. Navigate to the `[React-Node-PostgreSql-Application]`(https://github.com/ArshiL610/React-Node-PostgreSql-  Application.git) directory:
-```bash
+```
     cd frontend
+```
 
 2. Install the dependencies:
-```bash
-      npm install
+```
+npm install
+```
 
 3. Configure the backend API endpoints in the files/components. (Example: APP_API_URL=http://localhost:5000/api`)
 4. Start the development server:
-```bash
-     npm start
+```
+npm start
+```
 
 5. Access the app in your browser at `http://localhost:3000`.
 
