@@ -22,7 +22,6 @@ function App() {
         <Route path='/otp-verify/:email' element={<OtpVerify />} />
         <Route path='/reset-password/:email' element={<ResetPassword />} />
       </Routes>
-      {/* <Tasks /> */}
     </div>
   );
 }
